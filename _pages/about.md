@@ -1,34 +1,38 @@
 ---
 layout: about
-title: about
+title: Home
+show_title: false
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: 
 
-profile:
-  align: right
-  image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+profile: false
+  # align: right
+  # image: lab_setup.jpg
+  # image_circular: false # crops the image to make it circular
+  # more_info: 
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+selected_papers: false # includes a list of papers marked as "selected={true}"
+social: false # includes social icons at the bottom of the page
 
 announcements:
-  enabled: true # includes a list of news items
+  enabled: false # includes a list of news items
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
   limit: 5 # leave blank to include all the news in the `_news` folder
 
 latest_posts:
-  enabled: true
+  enabled: false
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](https://www.reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+<h1 class="home-title">Welcome to the Jang Lab</h1>
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+<p class="home-subtitle">Advancing precision psychiatry through real-world human brain research</p>
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+The Jang Laboratory aims to understand how the brain learns, makes decisions, and generates emotions—and how these processes shape behavior and mental health. We integrate immersive virtual reality (VR), mobile intracranial EEG, wearable technologies, motion tracking, and computational modeling to study how neural circuits support behavior in naturalistic settings. Our goal is to connect brain activity to real-world-like experience in ways that deepen our understanding of learning and decision-making, reveal how these processes differ in psychiatric disorders, and guide the development of more targeted, circuit-based interventions. 
+
+<div class="home-hero">
+  <img src="{{ '/assets/img/lab_setup.jpg' | relative_url }}" alt="Jang Lab setup">
+</div>
+
+The Jang Lab is part of the [UCLA Department of Psychiatry and Biobehavioral Sciences](https://www.uclahealth.org/medical-services/psychiatry) and the [Jane and Terry Semel Institute for Neuroscience and Human Behavior](https://www.semel.ucla.edu), [Division of Neuromodulation](https://neuromodulation.ucla.edu). 

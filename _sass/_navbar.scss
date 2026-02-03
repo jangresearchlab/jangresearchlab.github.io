@@ -11,6 +11,13 @@
   opacity: 0.95;
 }
 
+.navbar-logo {
+  height: 30px;
+  width: auto;
+  max-height: 30px;
+  margin-right: 0; /* spacing handled by ml-2 on the text */
+}
+
 .navbar .dropdown-menu,
 .btn-group.dropdown .dropdown-menu {
   background-color: var(--global-bg-color);

@@ -1,0 +1,83 @@
+.people-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 0; /* avoid extra gap before divider */
+}
+
+.people-section {
+  margin-bottom: 1.6rem;      /* controls space between sections */
+  padding-bottom: 0.6rem;     /* controls space above the divider */
+  border-bottom: 1px solid #eee;
+}
+
+.people-section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Reduce space between last person and the divider */
+.people-section .people-grid > :last-child {
+  margin-bottom: 0;
+}
+
+/* Person row */
+.person-card.horizontal {
+  display: flex;
+  align-items: center; /* centers photo relative to full text block */
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.person-photo {
+  width: 200px;
+  height: 200px;
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Key mobile fix: allow text to actually take the remaining width */
+.person-text {
+  flex: 1;
+  min-width: 0; /* prevents “squished narrow column” behavior in flex layouts */
+}
+
+.person-title {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.person-bio {
+  font-size: 0.9rem;
+  color: #444;
+  margin-top: 0.4rem;
+  line-height: 1.4;
+}
+
+/* Header spacing only inside People sections (avoid affecting global h2) */
+.people-section h2 {
+  margin: 0 0 0.9rem 0;
+}
+
+/* Mobile: stack to avoid skinny text column */
+@media (max-width: 576px) {
+  .person-card.horizontal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .person-photo {
+    width: 120px;
+    height: 120px;
+    max-width: 120px;
+    max-height: 120px;
+  }
+}

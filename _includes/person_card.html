@@ -1,0 +1,29 @@
+<div class="person-card horizontal">
+  {% if include.person.image %}
+    <img
+      src="{{ '/assets/img/people/' | append: include.person.image | relative_url }}"
+      class="person-photo"
+      alt="{{ include.person.name }}"
+    >
+  {% endif %}
+
+  <div class="person-text">
+    {% if include.person.url %}
+      <strong>
+        <a href="{{ include.person.url }}" target="_blank" rel="noopener">
+          {{ include.person.name }}
+        </a>
+      </strong>
+    {% else %}
+      <strong>{{ include.person.name }}</strong>
+    {% endif %}
+    <br>
+    <span class="person-title">{{ include.person.title }}</span>
+
+    {% if include.person.bio %}
+      <p class="person-bio">
+        {{ include.person.bio }}
+      </p>
+    {% endif %}
+  </div>
+</div>
