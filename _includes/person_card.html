@@ -1,7 +1,7 @@
 <div class="person-card horizontal">
   {% if include.person.image %}
     <img
-      src="{{ '/assets/img/people/' | append: include.person.image | relative_url }}"
+      src="{{ '/assets/img/' | append: include.person.image | relative_url }}"
       class="person-photo"
       alt="{{ include.person.name }}"
     >
