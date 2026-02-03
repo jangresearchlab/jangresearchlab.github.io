@@ -32,6 +32,7 @@ nav_order: 2
         </p>
       </div>
     </div>
-  {% endfor %}
-</div>
 
+{% endfor %}
+
+</div>

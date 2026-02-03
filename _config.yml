@@ -3,9 +3,9 @@
 # -----------------------------------------------------------------------------
 
 title: Jang Lab # the website title (if blank, full name will be used instead)
-first_name: 
-middle_name: 
-last_name: 
+first_name:
+middle_name:
+last_name:
 contact_note: >
   You can even add a little note about which of these is the best way to reach you.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
@@ -65,8 +65,8 @@ max_width: 930px
 # Add logo to navbar
 navbar:
   logo: /assets/img/1.jpg
-  logo_dark: /assets/img/1.jpg   # optional (for dark mode)
-  logo_width: 40px                  # optional
+  logo_dark: /assets/img/1.jpg # optional (for dark mode)
+  logo_width: 40px # optional
 
 # TODO: add layout settings (single page vs. multi-page)
 

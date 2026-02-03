@@ -2,7 +2,7 @@
 layout: page
 title: Research
 permalink: /projects_old/
-description: 
+description:
 nav: false
 nav_order: 2
 display_categories:
