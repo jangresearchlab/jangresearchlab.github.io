@@ -64,8 +64,8 @@ max_width: 930px
 
 # Add logo to navbar
 navbar:
-  logo: /assets/img/1.jpg
-  logo_dark: /assets/img/1.jpg # optional (for dark mode)
+  logo: /assets/img/Logo.png
+  logo_dark: /assets/img/Logo.png # optional (for dark mode)
   logo_width: 40px # optional
 
 # TODO: add layout settings (single page vs. multi-page)
