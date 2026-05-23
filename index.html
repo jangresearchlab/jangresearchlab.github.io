@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jang Lab</title>
+  <meta name="description" content="The Jang Laboratory at UCLA advances precision psychiatry through real-world human brain research." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & Base ───────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1a1a;
+      --ink-muted:  #555;
+      --ink-faint:  #999;
+      --rule:       #ddd;
+      --bg:         #faf9f7;
+      --bg-alt:     #f2f0ec;
+      --accent:     #2e5d9e;
+      --accent-lt:  #dae4f5;
+      --serif:      'EB Garamond', Georgia, serif;
+      --sans:       'DM Sans', system-ui, sans-serif;
+      --max:        1200px;
+      --nav-h:      60px;
+    }
+
+    html { scroll-behavior: smooth; font-size: 18px; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    img { max-width: 100%; display: block; }
+
+    /* ── Nav ────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 2rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .nav-brand img {
+      height: 36px;
+      width: auto;
+    }
+
+    .nav-brand span {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--accent); }
+
+    /* hamburger */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 640px) {
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: var(--nav-h);
+        left: 0; right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--rule);
+        padding: 1rem 2rem 1.5rem;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 0.9rem; padding: 0.4rem 0; }
+    }
+
+    /* ── Sections ───────────────────────────────────────── */
+    section {
+      display: none;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      animation: fadeUp 0.4s ease both;
+    }
+    section.active { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Page Headings ──────────────────────────────────── */
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── Home ───────────────────────────────────────────── */
+    .home-hero {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .home-hero-text .tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--ink-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .home-hero-text p {
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      line-height: 1.8;
+    }
+
+    .home-hero-img {
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .home-hero-img img {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .home-affil {
+      background: var(--bg-alt);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      padding: 1rem 1.4rem;
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      line-height: 1.8;
+    }
+
+    /* ── Research ───────────────────────────────────────── */
+    .project-list { display: flex; flex-direction: column; gap: 2.5rem; }
+
+    .project-card {
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1.8rem 2rem;
+      background: #fff;
+      transition: box-shadow 0.2s;
+    }
+    .project-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+
+    .project-card p {
+      font-size: 0.92rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.75rem;
+      line-height: 1.75;
+    }
+
+    .project-collab {
+      font-size: 0.82rem;
+      color: var(--ink-faint);
+      font-style: italic;
+    }
+
+    /* ── People ─────────────────────────────────────────── */
+    .pi-card {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      align-items: start;
+    }
+
+    .pi-card img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 4px;
+    }
+
+    .pi-card .pi-name {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.15rem;
+    }
+
+    .pi-card .pi-title {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .pi-card .pi-bio {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      line-height: 1.8;
+    }
+
+    @media (max-width: 540px) {
+      .pi-card { grid-template-columns: 1fr; }
+      .pi-card img { width: 130px; height: 130px; }
+    }
+
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.4rem;
+      margin-bottom: 3rem;
+    }
+
+    .member-card {
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .member-card .m-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .member-card .m-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: var(--bg-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .member-card .m-photo-placeholder svg {
+      width: 56px;
+      height: 56px;
+      opacity: 0.25;
+    }
+
+    .member-card .m-body {
+      padding: 1.1rem 1.3rem 1.3rem;
+    }
+
+    .member-card .m-name {
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .member-card .m-role {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .member-card .m-bio {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    .collab-list { display: flex; flex-direction: column; gap: 0.7rem; }
+
+    .collab-item {
+      display: flex;
+      flex-direction: column;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .collab-item:last-child { border-bottom: none; }
+
+    .collab-name {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .collab-affil {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+    }
+
+    /* ── Publications ───────────────────────────────────── */
+    .pub-year-group { margin-bottom: 2.5rem; }
+
+    .pub-year {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .pub-list { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
+
+    .pub-item {
+      display: block;
+    }
+
+    .pub-thumb,
+    .pub-thumb-placeholder { display: none; }
+
+    .pub-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 0.25rem;
+    }
+
+    .pub-authors {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .pub-journal {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      font-style: italic;
+      margin-bottom: 0.4rem;
+    }
+
+    .pub-links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+    .pub-link {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border: 1px solid var(--accent);
+      border-radius: 3px;
+      color: var(--accent);
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .pub-link:hover {
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    footer {
+      margin-top: 6rem;
+      border-top: 1px solid var(--rule);
+      text-align: center;
+      padding: 1.8rem 2rem;
+      font-size: 0.82rem;
+      color: var(--ink-faint);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#" onclick="showSection('home')">
+      <img src="https://jangresearchlab.github.io/assets/img/logo.png" alt="Jang Lab logo" />
+      <span>Jang Lab</span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="showSection('home')"    id="nav-home">Home</a></li>
+      <li><a href="#" onclick="showSection('research')" id="nav-research">Research</a></li>
+      <li><a href="#" onclick="showSection('people')"   id="nav-people">People</a></li>
+      <li><a href="#" onclick="showSection('pubs')"     id="nav-pubs">Publications</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════════
+     HOME
+═══════════════════════════════════════════ -->
+<section id="home" class="active">
+  <div class="home-hero">
+    <div class="home-hero-text">
+      <h1>Welcome to the Jang Lab</h1>
+      <p class="tagline">Advancing precision psychiatry through real-world human brain research</p>
+      <p>
+        The Jang Laboratory aims to understand how the brain learns, makes decisions, and generates
+        emotions — and how these processes shape behavior and mental health. We integrate immersive
+        virtual reality (VR), mobile intracranial EEG, wearable technologies, motion tracking, and
+        computational modeling to study how neural circuits support behavior in naturalistic settings.
+        Our goal is to connect brain activity to real-world experience in ways that deepen our
+        understanding of learning and decision-making, reveal how these processes differ in psychiatric
+        disorders, and guide the development of more targeted, circuit-based interventions.
+      </p>
+    </div>
+    <div class="home-hero-img">
+      <img src="https://jangresearchlab.github.io/assets/img/lab_setup.jpg" alt="Jang Lab setup" />
+    </div>
+  </div>
+
+  <div class="home-affil">
+    The Jang Lab is part of the
+    <a href="https://www.uclahealth.org/medical-services/psychiatry">UCLA Department of Psychiatry and Biobehavioral Sciences</a>
+    and the
+    <a href="https://www.semel.ucla.edu">Jane and Terry Semel Institute for Neuroscience and Human Behavior</a>,
+    <a href="https://neuromodulation.ucla.edu">Division of Neuromodulation</a>.
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     RESEARCH
+═══════════════════════════════════════════ -->
+<section id="research">
+  <h1>Research</h1>
+
+  <div class="project-list">
+
+    <div class="project-card">
+      <h3>Virtual Reality (VR) Fear Conditioning</h3>
+      <p>
+        This project uses immersive virtual reality combined with
+        <a href="https://www.neuropace.com/patients/neuropace-rns-system/">intracranial EEG</a>
+        recordings to study the neural mechanisms underlying the formation and extinction of fear
+        responses in realistic environments. Participants move through richly detailed virtual settings
+        where cues become associated with threat or safety, allowing us to measure how fear memories
+        form, generalize, and change over time. By synchronizing neural activity with behavior,
+        movement, and physiology, we can directly observe how neural circuits encode fear and regulate
+        responses to threat. Ultimately, this work aims to identify neural signatures of fear and
+        anxiety that could guide more precise, circuit-based interventions.
+      </p>
+      <p class="project-collab">Collaborator(s): Nanthia Suthana (Duke)</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Closed-Loop Neurostimulation for Treatment-Resistant PTSD</h3>
+      <p>
+        This project investigates whether
+        <a href="https://www.neuropace.com/patients/neuropace-rns-system/">brain-responsive neurostimulation</a>
+        can alleviate severe, treatment-resistant PTSD by detecting neural signatures of distress and
+        delivering targeted stimulation in real time. By combining implanted sensing devices with
+        behavioral and physiological measures, we aim to identify when pathological fear circuits
+        become active and intervene at the moment they drive symptoms. This closed-loop approach offers
+        a path toward more precise, personalized neuromodulation for individuals who have not benefited
+        from existing therapies.
+      </p>
+      <p class="project-collab">Collaborator(s): Nanthia Suthana (Duke), Jean-Philippe Langevin (UCLA/VA)</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Cognitive Maps and Flexible Learning</h3>
+      <p>
+        This project studies how the human brain builds and updates internal cognitive maps that
+        support flexible learning and generalization across environments. Using immersive virtual
+        reality and intracranial EEG, we examine how neural representations of the environment are
+        updated when the underlying structure of a task changes. By linking these neural dynamics to
+        behavior, this work aims to reveal how the brain infers abstract relationships and enables the
+        transfer of knowledge across contexts to guide decision-making.
+      </p>
+      <p class="project-collab">Collaborator(s): Matt Nassar (Brown)</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     PEOPLE
+═══════════════════════════════════════════ -->
+<section id="people">
+  <h1>People</h1>
+
+  <h2>Principal Investigator</h2>
+
+  <div class="pi-card">
+    <img src="https://jangresearchlab.github.io/assets/img/photo_AJ.jpg" alt="Anthony I Jang, MD" />
+    <div>
+      <div class="pi-name">Anthony I Jang, MD</div>
+      <div class="pi-title">Assistant Professor-In-Residence, Department of Psychiatry and Biobehavioral Sciences</div>
+      <p class="pi-bio">
+        Anthony received his undergraduate degree in neuroscience at Brown University, where he worked
+        with Michael Frank and Matthew Nassar to study how reward prediction errors shape memory. He
+        then completed post-baccalaureate research at the NIH with Kareem Zaghloul, using intracranial
+        EEG and microelectrode recordings to investigate the neural basis of memory, attention, and
+        decision-making. He earned his MD through the Harvard–MIT Program in Health Sciences and
+        Technology (HST), where he trained with Jan Drugowitsch to develop theory-driven models of
+        human choice and eye-movement behavior. After graduating in 2021, he moved to the West Coast
+        to complete his psychiatry residency at UCLA. As a Research Track resident, he worked with
+        Nanthia Suthana, integrating immersive virtual reality, mobile intracranial EEG, and wearable
+        technologies to study fear learning and anxiety. Anthony joined UCLA in Fall 2025 as an
+        Assistant Professor-in-Residence in the Department of Psychiatry and Biobehavioral Sciences.
+        Anthony is interested in integrating intracranial electrophysiology, immersive virtual reality,
+        and computational approaches to understand how the human brain learns, makes decisions, and
+        generates emotion in naturalistic settings. Outside the lab, Anthony enjoys playing tennis,
+        spending time with his wife and two cats, and F1 sim racing.
+      </p>
+    </div>
+  </div>
+
+  <h2>Members</h2>
+
+  <div class="member-grid">
+
+    <div class="member-card">
+      <div class="m-photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="8" r="4" fill="currentColor"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="m-body">
+        <div class="m-name">Mikayla Dilbeck</div>
+        <div class="m-role">Affiliated MD/PhD Student</div>
+        <p class="m-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+      </div>
+    </div>
+
+    <div class="member-card">
+      <div class="m-photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="8" r="4" fill="currentColor"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="m-body">
+        <div class="m-name">Jonny Baham</div>
+        <div class="m-role">Research Assistant</div>
+        <p class="m-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+      </div>
+    </div>
+
+    <div class="member-card">
+      <div class="m-photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="8" r="4" fill="currentColor"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="m-body">
+        <div class="m-name">Rahman Mustafa</div>
+        <div class="m-role">Research Assistant</div>
+        <p class="m-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Collaborators</h2>
+
+  <div class="collab-list">
+    <div class="collab-item">
+      <span class="collab-name"><a href="https://suthanalab.com/">Nanthia Suthana, PhD</a></span>
+      <span class="collab-affil">Duke University</span>
+    </div>
+    <div class="collab-item">
+      <span class="collab-name">Jean-Philippe Langevin, MD</span>
+      <span class="collab-affil">UCLA &amp; VA Greater Los Angeles Health Care</span>
+    </div>
+    <div class="collab-item">
+      <span class="collab-name"><a href="https://sites.brown.edu/mattlab/">Matthew Nassar, PhD</a></span>
+      <span class="collab-affil">Brown University</span>
+    </div>
+    <div class="collab-item">
+      <span class="collab-name"><a href="https://nuttidalab.github.io">Nuttida Rungratsameetaweemana, PhD</a></span>
+      <span class="collab-affil">Columbia University</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     PUBLICATIONS
+═══════════════════════════════════════════ -->
+<section id="pubs">
+  <h1>Publications</h1>
+
+  <!-- 2026 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2026</div>
+    <ul class="pub-list">
+      <li class="pub-item">
+        <div class="pub-thumb-placeholder"></div>
+        <div>
+          <div class="pub-title">Shared effects of one's own and others' experiences during reinforcement learning on episodic memory</div>
+          <div class="pub-authors">Maria A Woitow, Anthony I Jang, Ben Eppinger, Matthew R Nassar, Marcel Brass, and Julia M Rodriguez Buritica</div>
+          <div class="pub-journal">npj Science of Learning, 2026</div>
+          <div class="pub-links">
+            <a class="pub-link" href="https://www.nature.com/articles/s41539-026-00409-7" target="_blank" rel="noopener">HTML</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2021 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2021</div>
+    <ul class="pub-list">
+      <li class="pub-item">
+        <img class="pub-thumb" src="https://jangresearchlab.github.io/assets/img/publication_preview/jang2021optimal.jpeg" alt="" />
+        <div>
+          <div class="pub-title">Optimal policy for attention-modulated decisions explains human fixation behavior</div>
+          <div class="pub-authors">Anthony I Jang, Ravi Sharma, and Jan Drugowitsch</div>
+          <div class="pub-journal">eLife, 2021</div>
+          <div class="pub-links">
+            <a class="pub-link" href="https://elifesciences.org/articles/63436" target="_blank" rel="noopener">HTML</a>
+            <a class="pub-link" href="https://jangresearchlab.github.io/assets/pdf/jang2021optimal.pdf" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2019 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2019</div>
+    <ul class="pub-list">
+      <li class="pub-item">
+        <img class="pub-thumb" src="https://jangresearchlab.github.io/assets/img/publication_preview/jang2019positive.jpeg" alt="" />
+        <div>
+          <div class="pub-title">Positive reward prediction errors during decision-making strengthen memory encoding</div>
+          <div class="pub-authors">Anthony I Jang, Matthew R Nassar, Daniel G Dillon, and Michael J Frank</div>
+          <div class="pub-journal">Nature Human Behaviour, 2019</div>
+          <div class="pub-links">
+            <a class="pub-link" href="https://www.nature.com/articles/s41562-019-0597-3" target="_blank" rel="noopener">HTML</a>
+            <a class="pub-link" href="https://jangresearchlab.github.io/assets/pdf/jang2019positive.pdf" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2018 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2018</div>
+    <ul class="pub-list">
+      <li class="pub-item">
+        <img class="pub-thumb" src="https://jangresearchlab.github.io/assets/img/publication_preview/wittig2018attention.jpeg" alt="" />
+        <div>
+          <div class="pub-title">Attention improves memory by suppressing spiking-neuron activity in the human anterior temporal lobe</div>
+          <div class="pub-authors">John H Wittig Jr, Anthony I Jang, John B Cocjin, Sara K Inati, and Kareem A Zaghloul</div>
+          <div class="pub-journal">Nature Neuroscience, 2018</div>
+          <div class="pub-links">
+            <a class="pub-link" href="https://www.nature.com/articles/s41593-018-0148-7" target="_blank" rel="noopener">HTML</a>
+            <a class="pub-link" href="https://jangresearchlab.github.io/assets/pdf/wittig2018attention.pdf" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+      </li>
+      <li class="pub-item">
+        <img class="pub-thumb" src="https://jangresearchlab.github.io/assets/img/publication_preview/zavala2018cognitive.jpeg" alt="" />
+        <div>
+          <div class="pub-title">Cognitive control involves theta power within trials and beta power across trials in the prefrontal-subthalamic network</div>
+          <div class="pub-authors">Baltazar Zavala, Anthony Jang, Michael Trotta, Codrin I Lungu, Peter Brown, and Kareem A Zaghloul</div>
+          <div class="pub-journal">Brain, 2018</div>
+          <div class="pub-links">
+            <a class="pub-link" href="https://doi.org/10.1093/brain/awy266" target="_blank" rel="noopener">HTML</a>
+            <a class="pub-link" href="https://jangresearchlab.github.io/assets/pdf/zavala2018cognitive.pdf" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2017 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2017</div>
+    <ul class="pub-list">
+      <li class="pub-item">
+        <img class="pub-thumb" src="https://jangresearchlab.github.io/assets/img/publication_preview/jang2017human.jpeg" alt="" />
+        <div>
+          <div class="pub-title">Human cortical neurons in the anterior temporal lobe reinstate spiking activity during verbal memory retrieval</div>
+          <div class="pub-authors">Anthony I Jang, John H Wittig, Sara K Inati, and Kareem A Zaghloul</div>
+          <div class="pub-journal">Current Biology, 2017</div>
+          <div class="pub-links">
+            <a class="pub-link" href="https://doi.org/10.1016/j.cub.2017.05.014" target="_blank" rel="noopener">HTML</a>
+            <a class="pub-link" href="https://jangresearchlab.github.io/assets/pdf/jang2017human.pdf" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+      </li>
+      <li class="pub-item">
+        <img class="pub-thumb" src="https://jangresearchlab.github.io/assets/img/publication_preview/zavala2017human.jpeg" alt="" />
+        <div>
+          <div class="pub-title">Human subthalamic nucleus activity during non-motor decision making</div>
+          <div class="pub-authors">Baltazar A Zavala, Anthony I Jang, and Kareem A Zaghloul</div>
+          <div class="pub-journal">eLife, 2017</div>
+          <div class="pub-links">
+            <a class="pub-link" href="https://elifesciences.org/articles/31007" target="_blank" rel="noopener">HTML</a>
+            <a class="pub-link" href="https://jangresearchlab.github.io/assets/pdf/zavala2017human.pdf" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2015 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2015</div>
+    <ul class="pub-list">
+      <li class="pub-item">
+        <img class="pub-thumb" src="https://jangresearchlab.github.io/assets/img/publication_preview/jang2015role.jpeg" alt="" />
+        <div>
+          <div class="pub-title">The role of frontal cortical and medial-temporal lobe brain areas in learning a Bayesian prior belief on reversals</div>
+          <div class="pub-authors">Anthony I Jang, Vincent D Costa, Peter H Rudebeck, Yogita Chudasama, Elisabeth A Murray, and Bruno B Averbeck</div>
+          <div class="pub-journal">Journal of Neuroscience, 2015</div>
+          <div class="pub-links">
+            <a class="pub-link" href="https://www.jneurosci.org/content/35/33/11751.short" target="_blank" rel="noopener">HTML</a>
+            <a class="pub-link" href="https://jangresearchlab.github.io/assets/pdf/jang2015role.pdf" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</section>
+
+
+<!-- ── Footer ── -->
+<footer>
+  © 2026 Jang Lab · UCLA Department of Psychiatry and Biobehavioral Sciences ·
+  Hosted by <a href="https://pages.github.com/">GitHub Pages</a>
+</footer>
+
+
+<script>
+  // ── SPA routing ──────────────────────────────────────────
+  const sections = ['home', 'research', 'people', 'pubs'];
+  const navIds   = { home: 'nav-home', research: 'nav-research', people: 'nav-people', pubs: 'nav-pubs' };
+
+  function showSection(id) {
+    sections.forEach(s => {
+      document.getElementById(s).classList.toggle('active', s === id);
+      const navEl = document.getElementById(navIds[s]);
+      if (navEl) navEl.classList.toggle('active', s === id);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // close mobile menu
+    document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('open');
+    return false;
+  }
+
+  // ── Mobile hamburger ────────────────────────────────────
+  document.getElementById('navToggle').addEventListener('click', function () {
+    this.classList.toggle('open');
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // ── Init ────────────────────────────────────────────────
+  showSection('home');
+</script>
+
+</body>
+</html>
