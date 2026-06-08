@@ -295,7 +295,7 @@
 
     .member-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: 1fr;
       gap: 1.4rem;
       margin-bottom: 3rem;
     }
@@ -303,25 +303,35 @@
     .member-card {
       border: 1px solid var(--rule);
       border-radius: 6px;
-      overflow: hidden;
       background: #fff;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem;
     }
 
     .member-card .m-photo {
-      width: 100%;
-      aspect-ratio: 1 / 1;
+      width: 180px;
+      height: 180px;
+      min-width: 180px;
+      min-height: 180px;
       object-fit: cover;
       object-position: top center;
       display: block;
+      border-radius: 3px;
+      flex-shrink: 0;
     }
 
     .member-card .m-photo-placeholder {
-      width: 100%;
-      aspect-ratio: 1 / 1;
+      width: 180px;
+      height: 180px;
       background: var(--bg-alt);
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+      border-radius: 3px;
     }
 
     .member-card .m-photo-placeholder svg {
@@ -331,7 +341,10 @@
     }
 
     .member-card .m-body {
-      padding: 1.1rem 1.3rem 1.3rem;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .member-card .m-name {
@@ -611,7 +624,7 @@
     </div>
 
     <div class="member-card">
-      <img src="https://jangresearchlab.github.io/assets/img/photo_RMustapha.jpg" alt="Rahman Mustapha" />
+      <img class="m-photo" src="https://jangresearchlab.github.io/assets/img/photo_RMustapha.jpg" alt="Rahman Mustapha" />
       <div class="m-body">
         <div class="m-name">Rahman Mustapha</div>
         <div class="m-role">Mixed-reality Development Engineer</div>
@@ -620,30 +633,20 @@
     </div>
 
     <div class="member-card">
-      <div class="m-photo-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="8" r="4" fill="currentColor"/>
-          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="currentColor"/>
-        </svg>
-      </div>
+      <img class="m-photo" src="https://jangresearchlab.github.io/assets/img/photo_MDilbeck.jpg" alt="Mikayla Dilbeck" />
       <div class="m-body">
         <div class="m-name">Mikayla Dilbeck</div>
         <div class="m-role">Affiliated MD/PhD Student</div>
-        <p class="m-bio"></p>
+        <p class="m-bio">Mikayla is a medical student at UCLA, where she is pursuing a dual MD/PhD degree. Her research interests include the intersection of neuroscience and clinical practice, particularly in the areas of cognitive psychology and behavioral interventions.</p>
       </div>
     </div>
 
     <div class="member-card">
-      <div class="m-photo-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="8" r="4" fill="currentColor"/>
-          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="currentColor"/>
-        </svg>
-      </div>
+      <img class="m-photo" src="https://jangresearchlab.github.io/assets/img/photo_WJiang.jpg" alt="Wenxuan Jiang, Ph.D." />
       <div class="m-body">
         <div class="m-name">Wenxuan Jiang, Ph.D.</div>
         <div class="m-role">Affiliated Postdoctoral Scholar</div>
-        <p class="m-bio"></p>
+        <p class="m-bio">Wenxuan obtained her PhD in Biomedical Engineering and MS in Electrical Engineering from the University of Southern California. Her research focuses on combining experimental and computational approaches to investigate the neural mechanisms underlying learning and memory during naturalistic behavior in freely moving humans. She is also interested in studying the neuromodulatory effects of transcranial magnetic stimulation on memory functions.</p>
       </div>
     </div>
 
