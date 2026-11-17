@@ -254,7 +254,15 @@
     }
 
     /* ── Funding & Support ────────────────────────────────── */
-    .funding-section { margin-top: 4rem; }
+    .funding-section {
+      margin-top: 4rem;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1.8rem 2rem;
+      background: #fff;
+      transition: box-shadow 0.2s;
+    }
+    .funding-section:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
     .funding-section h2 { margin-bottom: 1.5rem; }
     .funding-logos {
       display: grid;
@@ -294,7 +302,13 @@
       gap: 2rem;
       margin-bottom: 3rem;
       align-items: start;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1.8rem 2rem;
+      background: #fff;
+      transition: box-shadow 0.2s;
     }
+    .pi-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
 
     .pi-card img {
       width: 180px;
