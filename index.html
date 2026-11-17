@@ -393,12 +393,6 @@
       display: none;
     }
 
-    #pubs h1 {
-      border-bottom: 1px solid var(--rule);
-      padding-bottom: 0.6rem;
-      margin-bottom: 2rem;
-    }
-
     .pub-list {
       list-style: none;
       display: flex;
@@ -456,6 +450,15 @@
       background: var(--accent);
       color: #fff;
       text-decoration: none;
+    }
+
+    /* ── Horizontal bar after title ────────────────────── */
+    #research > h1,
+    #people > h1,
+    #pubs > h1 {
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.6rem;
+      margin-bottom: 2rem;
     }
 
     /* ── Footer ─────────────────────────────────────────── */
@@ -525,7 +528,6 @@
   </div>
 </section>
 
-
 <!-- ════════════════════════════════════════
      RESEARCH
 ═══════════════════════════════════════════ -->
@@ -578,6 +580,24 @@
       <p class="project-collab">Collaborator(s): Matt Nassar (Brown)</p>
     </div>
 
+    <div class="funding-section">
+      <h2>Funding &amp; Support</h2>
+
+      <div class="funding-logos">
+
+        <a href="https://www.nimh.nih.gov/" target="_blank" rel="noopener">
+          <img src="assets/img/funding/nimh.png" alt="National Institute of Mental Health">
+        </a>
+
+        <a href="https://bbrfoundation.org/" target="_blank" rel="noopener">
+          <img src="assets/img/funding/bbrf.png" alt="Brain & Behavior Research Foundation">
+        </a>
+
+        <a href="https://www.semel.ucla.edu/" target="_blank" rel="noopener">
+          <img src="assets/img/funding/logo_semel.png" alt="UCLA Semel Institute">
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
