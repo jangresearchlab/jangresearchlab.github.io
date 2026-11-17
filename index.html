@@ -254,23 +254,20 @@
     }
 
     /* ── Funding & Support ────────────────────────────────── */
-    .funding-section {
-      margin-top: 4rem;
+    .funding-section { margin-top: 4rem; }
+    .funding-section h2 { margin-bottom: 1.5rem; }
+    .funding-logos {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
+      align-items: center;
       border: 1px solid var(--rule);
       border-radius: 6px;
       padding: 1.8rem 2rem;
       background: #fff;
       transition: box-shadow 0.2s;
     }
-    .funding-section:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
-    .funding-section h2 { margin-bottom: 1.5rem; }
-    .funding-logos {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 2rem;
-      align-items: start;
-      margin-top: 1.5rem;
-    }
+    .funding-logos:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
     .funding-logos a {
       display: flex;
       flex-direction: column;
